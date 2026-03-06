@@ -8,9 +8,9 @@ load_dotenv()
 class ChatEngine:
     """ChatEngine class to handle chat interactions with OpenAI API."""
     def __init__(self):
-        self.api_key = settings.OPENAI_API_KEY
+        self.api_key = os.getenv("OPENAI_API_KEY")
         if not self.api_key:
-            raise ValueError("OPENAI_API_KEY not found in settings. please set it in config/settings.py")
+            raise ValueError("OPENAI_API_KEY not found in environment variables. please set it in your .env file.")
         self.client = OpenAI(api_key=self.api_key)
         self.model = "gpt-3.5-turbo"
         self.conversation_history = []
